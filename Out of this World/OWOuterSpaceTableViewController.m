@@ -7,24 +7,22 @@
 //
 
 #import "OWOuterSpaceTableViewController.h"
+#import "AstronomicalData.h"
+#import "OWSpaceObject.h"
 
 @implementation OWOuterSpaceTableViewController
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    self.planets = [[NSMutableArray alloc] init];
 
-    
-    NSString *planet1 = @"Mercury";
-    NSString *planet2 = @"Venus";
-    NSString *planet3 = @"Earh";
-    NSString *planet4 = @"Mars";
-    NSString *planet5 = @"Jupiter";
-    NSString *planet6 = @"Saturn";
-    NSString *planet7 = @"Uranus";
-    NSString *planet8 = @"Neptune";
-    
-    self.planets = [[NSMutableArray alloc] initWithObjects:planet1, planet2, planet3, planet4, planet5, planet6, planet7, planet8, nil];
+    for (NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets])
+    {
+        NSString *imageName = [NSString stringWithFormat:@"%@.jpg", planetData[PLANET_NAME]];
+        OWSpaceObject *planet = [[OWSpaceObject alloc] initWithData:planetData andImage:[UIImage imageNamed:imageName]];
+        [self.planets addObject:planet];
+    }
     
 }
 
@@ -46,14 +44,15 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    //Configure the cell
-    cell.textLabel.text = [self.planets objectAtIndex:indexPath.row];
+    //Configure the cell...
+    OWSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
+    cell.textLabel.text = planet.name;
+    cell.detailTextLabel.text = planet.nickname;
+    cell.imageView.image = planet.spaceImage;
     
-    if ( indexPath.section == 0 ) {
-        cell.backgroundColor = [UIColor redColor];
-    } else {
-        cell.backgroundColor = [UIColor blueColor];
-    }
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
     return cell;
 }
