@@ -33,6 +33,7 @@
 		9A25E98A19C5E33D000C645A /* Saturn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A25E98019C5E33D000C645A /* Saturn.jpg */; };
 		9A25E98B19C5E33D000C645A /* Uranus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A25E98119C5E33D000C645A /* Uranus.jpg */; };
 		9A25E98C19C5E33D000C645A /* Venus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A25E98219C5E33D000C645A /* Venus.jpg */; };
+		9A3AC99E19C771A300B1EA92 /* OWSpaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3AC99D19C771A300B1EA92 /* OWSpaceImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		9A25E98019C5E33D000C645A /* Saturn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Saturn.jpg; sourceTree = "<group>"; };
 		9A25E98119C5E33D000C645A /* Uranus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Uranus.jpg; sourceTree = "<group>"; };
 		9A25E98219C5E33D000C645A /* Venus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Venus.jpg; sourceTree = "<group>"; };
+		9A3AC99C19C771A300B1EA92 /* OWSpaceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWSpaceImageViewController.h; sourceTree = "<group>"; };
+		9A3AC99D19C771A300B1EA92 /* OWSpaceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWSpaceImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				9A25E90619C5AE06000C645A /* OWAppDelegate.h */,
 				9A25E90719C5AE06000C645A /* OWAppDelegate.m */,
 				9A25E90919C5AE06000C645A /* Main.storyboard */,
+				9A3AC99C19C771A300B1EA92 /* OWSpaceImageViewController.h */,
+				9A3AC99D19C771A300B1EA92 /* OWSpaceImageViewController.m */,
 				9A25E92C19C5AEE6000C645A /* OWOuterSpaceTableViewController.h */,
 				9A25E92D19C5AEE6000C645A /* OWOuterSpaceTableViewController.m */,
 				9A25E97619C5E303000C645A /* OWSpaceObject.h */,
@@ -313,6 +318,7 @@
 				9A25E90819C5AE06000C645A /* OWAppDelegate.m in Sources */,
 				9A25E90419C5AE06000C645A /* main.m in Sources */,
 				9A25E93119C5BF7D000C645A /* AstronomicalData.m in Sources */,
+				9A3AC99E19C771A300B1EA92 /* OWSpaceImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
