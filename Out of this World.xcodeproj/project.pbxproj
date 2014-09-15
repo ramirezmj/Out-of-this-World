@@ -145,6 +145,7 @@
 				9A25E92D19C5AEE6000C645A /* OWOuterSpaceTableViewController.m */,
 				9A25E97619C5E303000C645A /* OWSpaceObject.h */,
 				9A25E97719C5E303000C645A /* OWSpaceObject.m */,
+				9A3AC99B19C76AB600B1EA92 /* Model */,
 				9A25E90F19C5AE06000C645A /* Images.xcassets */,
 				9A25E8FE19C5AE06000C645A /* Supporting Files */,
 			);
@@ -164,8 +165,6 @@
 				9A25E98019C5E33D000C645A /* Saturn.jpg */,
 				9A25E98119C5E33D000C645A /* Uranus.jpg */,
 				9A25E98219C5E33D000C645A /* Venus.jpg */,
-				9A25E92F19C5BF7D000C645A /* AstronomicalData.h */,
-				9A25E93019C5BF7D000C645A /* AstronomicalData.m */,
 				9A25E8FF19C5AE06000C645A /* Out of this World-Info.plist */,
 				9A25E90019C5AE06000C645A /* InfoPlist.strings */,
 				9A25E90319C5AE06000C645A /* main.m */,
@@ -190,6 +189,15 @@
 				9A25E91F19C5AE06000C645A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A3AC99B19C76AB600B1EA92 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A25E92F19C5BF7D000C645A /* AstronomicalData.h */,
+				9A25E93019C5BF7D000C645A /* AstronomicalData.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
