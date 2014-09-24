@@ -67,10 +67,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)addSpaceObject
+- (void)addSpaceObject:(OWSpaceObject *)spaceObject
 {
+    if ( !self.addedSpaceObjects ) {
+        self.addedSpaceObjects = [[NSMutableArray alloc] init];
+    }
+    [self.addedSpaceObjects addObject:spaceObject];
     NSLog(@"addSpaceObject");
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // this is telling the table view to reload
+    [self.tableView reloadData];
 }
 
 

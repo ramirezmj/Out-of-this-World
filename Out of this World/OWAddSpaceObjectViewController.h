@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OWSpaceObject.h"
 
 @protocol OWAddSpaceObjectViewControllerDelegate <NSObject>
 
-- (void)addSpaceObject;
+- (void)addSpaceObject:(OWSpaceObject *)spaceObject;
 - (void)didCancel;
 
 @end

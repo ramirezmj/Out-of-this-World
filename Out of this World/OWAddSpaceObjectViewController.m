@@ -44,7 +44,25 @@
 
 - (IBAction)addButtonPressed:(UIButton *)sender
 {
-    [self.delegate addSpaceObject];
+    OWSpaceObject *newSpaceObject = [self returnNewSpaceObject];
+    [self.delegate addSpaceObject:newSpaceObject];
     
 }
+
+/* Method returns an OWSpaceObject using the information supplied from the textFields. Use a default image the EinsteinRing*/
+
+-(OWSpaceObject *)returnNewSpaceObject
+{
+    OWSpaceObject *addedSpaceObject = [[OWSpaceObject alloc] init];
+    addedSpaceObject.name = self.nameTextField.text;
+    addedSpaceObject.nickname = self.nicknameTextField.text;
+    addedSpaceObject.diameter = [self.diameterTextField.text floatValue];
+    addedSpaceObject.temperature = [self.temperatureTextField.text floatValue];
+    addedSpaceObject.numberOfMoons = [self.numberOfMoonsTextField.text intValue];
+    addedSpaceObject.interestFact = self.interestingFactTextField.text;
+    addedSpaceObject.spaceImage = [UIImage imageNamed:@"EinsteinRing.jpg"];
+
+    return addedSpaceObject;
+}
+
 @end
