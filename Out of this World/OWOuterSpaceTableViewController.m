@@ -52,19 +52,49 @@
             targetViewController.spaceObject = selectedObject;
         }
     }
+    
+    if ( [segue.destinationViewController isKindOfClass:[OWAddSpaceObjectViewController class]] ) {
+        OWAddSpaceObjectViewController *addSpaceObjectVC = segue.destinationViewController;
+        addSpaceObjectVC.delegate = self;
+    }
 }
+
+#pragma mark - OWAddSpaceObjectViewControllerDelegate
+
+- (void)didCancel
+{
+    NSLog(@"didCancel");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addSpaceObject
+{
+    NSLog(@"addSpaceObject");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if ( [self.addedSpaceObjects count] ) {
+        return 2;
+    }
+    else {
+        return 1;
+    }
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.planets count];
-
+    if ( section == 1 ) {
+        return [self.addedSpaceObjects count];
+    }
+    else {
+        return [self.planets count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,10 +103,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     //Configure the cell...
-    OWSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
-    cell.textLabel.text = planet.name;
-    cell.detailTextLabel.text = planet.nickname;
-    cell.imageView.image = planet.spaceImage;
+    
+    if ( indexPath.section == 1) {
+        // Use new Space Object to customize our cell
+    }
+    else {
+        OWSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickname;
+        cell.imageView.image = planet.spaceImage;
+    }
     
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = [UIColor whiteColor];
