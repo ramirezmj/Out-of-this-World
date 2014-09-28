@@ -14,10 +14,29 @@
 
 @implementation OWOuterSpaceTableViewController
 
+#pragma mark - Lazy Instantiation of Properties
+
+- (NSMutableArray *)planets
+{
+    if ( !_planets ) {
+        _planets = [[NSMutableArray alloc] init];
+    }
+    return _planets;
+}
+
+- (NSMutableArray *)addedSpaceObjects
+{
+    if ( !_addedSpaceObjects ) {
+        _addedSpaceObjects = [[NSMutableArray alloc] init];
+    }
+    return _addedSpaceObjects;
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.planets = [[NSMutableArray alloc] init];
+//    We don't need it because of the Lazy Instantiaton pragma mark section
+//    self.planets = [[NSMutableArray alloc] init];
 
     for (NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets])
     {
@@ -37,7 +56,15 @@
         {
             OWSpaceImageViewController *nextViewController = segue.destinationViewController;
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
-            OWSpaceObject *selectedObject = self.planets[path.row];
+            OWSpaceObject *selectedObject;
+            
+            if ( path.section == 0 ) {
+                selectedObject = self.planets[path.row];
+            }
+            else if ( path.section == 1 ) {
+                selectedObject = self.addedSpaceObjects[path.row];
+            }
+            
             nextViewController.spaceObject = selectedObject;
         }
     }
@@ -48,7 +75,15 @@
         {
             OWSpaceDataViewController *targetViewController = segue.destinationViewController;
             NSIndexPath *path = sender;
-            OWSpaceObject *selectedObject = self.planets[path.row];
+            OWSpaceObject *selectedObject;
+            
+            if ( path.section == 0 ) {
+                selectedObject = self.planets[path.row];
+            }
+            else if ( path.section == 1 ) {
+                selectedObject = self.addedSpaceObjects[path.row];
+            }
+            
             targetViewController.spaceObject = selectedObject;
         }
     }
@@ -69,9 +104,10 @@
 
 - (void)addSpaceObject:(OWSpaceObject *)spaceObject
 {
-    if ( !self.addedSpaceObjects ) {
-        self.addedSpaceObjects = [[NSMutableArray alloc] init];
-    }
+//    We don't need it because of the Lazy Instantiaton pragma mark section
+//    if ( !self.addedSpaceObjects ) {
+//        self.addedSpaceObjects = [[NSMutableArray alloc] init];
+//    }
     [self.addedSpaceObjects addObject:spaceObject];
     NSLog(@"addSpaceObject");
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -113,6 +149,10 @@
     
     if ( indexPath.section == 1) {
         // Use new Space Object to customize our cell
+        OWSpaceObject *planet = [self.addedSpaceObjects objectAtIndex:indexPath.row];
+        cell.textLabel.text = planet.name;
+        cell.detailTextLabel.text = planet.nickname;
+        cell.imageView.image = planet.spaceImage;
     }
     else {
         OWSpaceObject *planet = [self.planets objectAtIndex:indexPath.row];
