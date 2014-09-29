@@ -39,11 +39,17 @@
 //    We don't need it because of the Lazy Instantiaton pragma mark section
 //    self.planets = [[NSMutableArray alloc] init];
 
-    for (NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets])
+    for ( NSMutableDictionary *planetData in [AstronomicalData allKnownPlanets] )
     {
         NSString *imageName = [NSString stringWithFormat:@"%@.jpg", planetData[PLANET_NAME]];
         OWSpaceObject *planet = [[OWSpaceObject alloc] initWithData:planetData andImage:[UIImage imageNamed:imageName]];
         [self.planets addObject:planet];
+    }
+    
+    NSArray *myPlanetsAsPropertyLists = [[NSUserDefaults standardUserDefaults] arrayForKey:ADDED_SPACE_OBJECTS_KEY];
+    for ( NSDictionary *dictionary in myPlanetsAsPropertyLists ) {
+        OWSpaceObject *spaceObject = [self spaceObjectForDictionary:dictionary];
+        [self.addedSpaceObjects addObject:spaceObject];
     }
     
 }
@@ -134,6 +140,14 @@
     NSData *imageData = UIImagePNGRepresentation(spaceObject.spaceImage);
     NSDictionary *dictionary = @{PLANET_NAME : spaceObject.name, PLANET_GRAVITY : @(spaceObject.gravitationalForce), PLANET_DIAMETER : @(spaceObject.diameter), PLANET_YEAR_LENGTH : @(spaceObject.yearLenght), PLANET_DAY_LENGTH : @(spaceObject.dayLenght), PLANET_TEMPERATURE : @(spaceObject.temperature), PLANET_NUMBER_OF_MOONS : @(spaceObject.numberOfMoons), PLANET_NICKNAME : spaceObject.nickname, PLANET_INTERESTING_FACT : spaceObject.interestFact, PLANET_IMAGE : imageData};
     return dictionary;
+}
+
+- (OWSpaceObject *)spaceObjectForDictionary:(NSDictionary *)dictionary
+{
+    NSData *dataForImage = dictionary[PLANET_IMAGE];
+    UIImage *spaceObjectImage = [UIImage imageWithData:dataForImage];
+    OWSpaceObject *spaceObject = [[OWSpaceObject alloc] initWithData:dictionary andImage:spaceObjectImage];
+    return spaceObject;
 }
 
 
