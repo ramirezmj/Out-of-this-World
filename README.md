@@ -2,5 +2,5 @@
 # iOS 7 Development Course
 Introduction to UITableView.
 
-![Home](Out-of-this-World/demo1.png)
-![Detail](Out-of-this-World/demo2.png)
+![Home](Out of this World/demo1.png)
+![Detail](Out of this World/demo2.png)
