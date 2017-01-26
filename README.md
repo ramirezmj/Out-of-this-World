@@ -1,4 +1,4 @@
-# Out-of-this-World - iOS Programming: The Bitfountain iOS 7 Immersive
+# Out-of-this-World - The Bitfountain iOS 7 Immersive
 # iOS 7 Development Course
 Introduction to UITableView.
 
